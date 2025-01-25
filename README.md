@@ -8,13 +8,13 @@ Prerquisites:
 - PKI: (e.g. `strongswan-pki` apt package)
 - Clone this repo
 
-## Set reqired environment variables
+## 1. Set reqired environment variables
 
 ```shell
 export SERVER=<your server ip or domain>
 ```
 
-## Generate necessary certificates
+## 2. Generate necessary certificates
 
 ```shell
 # Generate CA key and certificate
@@ -28,17 +28,17 @@ pki --pub --in ./ipsec.d/private/server-key.pem --type rsa  | pki --issue --life
 
 _Note:_ The `ca-cert.pem` should be installed on the client machines when the VPN is set up.
 
-## Generate ipsec.conf
+## 3. Generate ipsec.conf
 
 ```shell
 envsubst < ipsec.conf.template > ipsec.conf
 ```
 
-## Fill up ipsec.secrets file
+## 4. Fill up ipsec.secrets file
 
 The file holds the credentials for the VPN.
 
-## Build and run the image
+## 5. Build and run the image
 
 ```shell
 docker build -t ikev2-ipsec .
